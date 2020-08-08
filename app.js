@@ -16,6 +16,8 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(helmet());
 app.use(logger("dev"));
 
+
+
 app.use(routes.home, globalRouter);
 app.use(routes.users, userRouter);
 app.use(routes.videos, videoRouter);
