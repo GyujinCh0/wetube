@@ -1,3 +1,11 @@
 extends layouts/main
 
 block content
+    .form__container
+        form(action="/login", method="post")
+            input(type="text", name="name", placeholder="Full Name")
+            input(type="email", name="email", placehoder="Email")
+            input(type="password", name="password", placehoder="Password")
+            input(type="password", name="passwordVeryfy", placehoder="Verify Password")
+            input(type="submit", value="Join Now!")
+        include partials/socialLogin
