@@ -12,7 +12,7 @@ const videoRauter = express.Router();
 
 videoRauter.get(routes.videos, videos);
 videoRauter.get(routes.upload, upload);
-videoRauter.get(routes.videoDetail, videoDetail);
+videoRauter.get(routes.videoDetail(), videoDetail);
 videoRauter.get(routes.editVideo, editVideo);
 videoRauter.get(routes.deleteVideo, deleteVideo);
 
