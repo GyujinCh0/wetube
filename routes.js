@@ -1,5 +1,5 @@
 import { userDetail } from "./controllers/userController";
-import { getUpload } from "./controllers/videoController";
+import { getUpload, deleteVideo } from "./controllers/videoController";
 
 // Global
 const HOME = "/";
@@ -44,8 +44,14 @@ const routes = {
       return VIDEO_DETAIL;
     }
   },
-  editVideo: EDIT_VIDEO,
-  deleteVideo: DELETE_VIDEO
+  editVideo: id => {
+    if(id) {
+      return `/videos/${id}/`;
+    }else{
+     return EDIT_VIDEO;
+    }
+},
+deleteVideo: DELETE_VIDEO
 };
 
 export default routes;
