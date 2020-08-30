@@ -6,12 +6,20 @@ const MODE = process.env.WEBPACK_ENV;
 const ENTRY_FILE = path.resolve(__dirname, "assets", "js", "main.js"); //__dirname=현재 디렉토리를 가리키는 노드 전역변수
 const OUTPUT_DIR = path.join(__dirname, "static");
 const config = {
-  entry: ENTRY_FILE,
+  entry: ["@babel/polyfill",ENTRY_FILE],
   mode: MODE,
   module: {
     rules: [
         {
-            test:/\.scss$/,
+            test:/\.(js)$/,
+            use: [
+                {
+                    loader: "babel-loader"
+                }
+            ]
+        },
+        {
+            test:/\.(scss)$/,
             use: [
                 {
                     loader: MiniExtractCSS.loader,
