@@ -29,6 +29,7 @@ const config = {
                 },
                 "css-loader",
                 {
+                    //css 호환성 
                     loader: "postcss-loader",
                     options: {
                         plugins(){

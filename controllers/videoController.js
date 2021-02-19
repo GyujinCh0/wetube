@@ -3,6 +3,7 @@ import Video from "../models/Video";
 
 export const home = async (req, res) => {
   try {
+    // -1 순서바꾸기 선입이 아래로
     const videos = await Video.find({}).sort({_id: -1});
     res.render("home", { pageTitle: "Home", videos });
   } catch (error) {
