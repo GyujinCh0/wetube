@@ -1,52 +1,56 @@
-const path = require("path"); //구식 자바스크립트 import랑 같음
+const path = require("path");
 const autoprefixer = require("autoprefixer");
-const MiniExtractCSS = require("mini-css-extract-plugin");
+const extractCSS = require("mini-css-extract-plugin");
 
 const MODE = process.env.WEBPACK_ENV;
-const ENTRY_FILE = path.resolve(__dirname, "assets", "js", "main.js"); //__dirname=현재 디렉토리를 가리키는 노드 전역변수
+const ENTRY_FILE = path.resolve(__dirname, "assets", "js", "main.js");
 const OUTPUT_DIR = path.join(__dirname, "static");
+
 const config = {
-  entry: ["@babel/polyfill",ENTRY_FILE],
-  mode: MODE,
-  module: {
-    rules: [
+    entry: ["@babel/polyfill", ENTRY_FILE],
+    devtool: "source-map",
+    mode: MODE,
+    module: {
+      rules: [
+        // Rules for ES6 -> JS
         {
-            test:/\.(js)$/,
-            use: [
-                {
-                    loader: "babel-loader"
-                }
-            ]
+          test: /\.(js)$/,
+          use: [
+            {
+              loader: "babel-loader",
+            },
+          ],
         },
+        // Rules for SCSS -> CSS
         {
-            test:/\.(scss)$/,
-            use: [
-                {
-                    loader: MiniExtractCSS.loader,
-                    options: {
-                        hmr: process.env.WEBPACK_ENV==="development"
-                    }
+          test: /\.(scss)$/, // webpack이 scss 파일을 찾도록 한다. scss 파일에 한해 config 적용시킨다
+          use: [
+            {
+              loader: extractCSS.loader,
+            },
+            {
+              loader: "css-loader", 
+            },
+            {
+              loader: "postcss-loader",
+              options: {
+                plugins() {
+                  return [autoprefixer({ overrildeBrowserslist: "cover 99.5%" })];
                 },
-                "css-loader",
-                {
-                    //css 호환성 
-                    loader: "postcss-loader",
-                    options: {
-                        plugins(){
-                            return [autoprefixer({overrideBrowserslist:"cover 99.5%"})];
-                        }
-                    }
-                },
-                "sass-loader"
-            ]
-        }
-    ]
-  },
-  output: {
-    path: OUTPUT_DIR,
-    filename: "[name].js",
-  },
-  plugins: [new MiniExtractCSS({filename:"styles.css"})],
-};
+              },
+            },
+            {
+              loader: "sass-loader",
+            },
+          ],
+        },
+      ],
+    },
+    output: {
+      path: OUTPUT_DIR,
+      filename: "[name].js",
+    },
+    plugins: [new extractCSS({ filename: "styles.css" })],
+  };
 
 module.exports = config;
