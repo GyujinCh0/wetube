@@ -303,7 +303,7 @@ a {
   .social-login .social-login--github {
     background-color: #444444;
     color: white; }
-  .social-login .social-login--facebook {
+  .social-login .social-login--google {
     background-color: #3a5998;
     color: white; }
 
@@ -346,6 +346,9 @@ a {
     margin-top: 25px; }
     .video-detail_-container .video__comments .video__comments-number {
       font-size: 16px; }
+
+.user-profile .user-profile__header img {
+  max-width: 160px; }
 
 .videoBlock video {
   max-width: 100%; }
