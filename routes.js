@@ -8,9 +8,11 @@ const SEARCH = "/search";
 // Users
 
 const USERS = "/users";
+const ME ="/me";
 const USER_DETAIL = "/:id";
 const EDIT_PROFILE = "/:id/edit-profile";
 const CHANGE_PASSWORD = "/:id/change-password";
+
 
 // Videos
 
@@ -20,6 +22,11 @@ const VIDEO_DETAIL = "/:id";
 const EDIT_VIDEO = "/:id/edit";
 const DELETE_VIDEO = "/:id/delete";
 
+// Github 
+
+const GITHUB = "/auth/github";
+const GITHUB_CALLBACK = "/auth/github/callback";
+
 const routes = {
   home: HOME,
   join: JOIN,
@@ -27,6 +34,7 @@ const routes = {
   logout: LOGOUT,
   search: SEARCH,
   users: USERS,
+  me:ME,
   userDetail: id => {
     if (id) {
       return `/users/${id}`;
@@ -58,7 +66,9 @@ const routes = {
     } else {
       return DELETE_VIDEO;
     }
-  }
+  },
+  github: GITHUB,
+  githubCallback: GITHUB_CALLBACK
 };
 
 export default routes;
