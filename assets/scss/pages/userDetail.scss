@@ -1,7 +1,24 @@
 .user-profile {
+    width:100%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    margin-bottom: 180px;
     .user-profile__header{
-        img {
-            max-width: 160px;
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+         .profile__username {
+             font-size: 18px;
+            margin-top: 50px;
+         }
+    }
+    .user-profile__btns {
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        a :not(:last-child){
+            margin-bottom: 20px;
         }
     }
 }
