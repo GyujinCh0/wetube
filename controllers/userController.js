@@ -41,14 +41,14 @@ export const githubLogin = passport.authenticate("github");
 
 export const githubLoginCallback = async (_, __, profile, cb) => {
   const {
-    _json: { id, name , avatar_url: avatarUrl, email },
+    _json: { id, name, avatar_url: avatarUrl, email },
   } = profile;
   console.log(profile);
   try {
     const user = await User.findOne({ email });
     if (user) {
-      user.githubId=id;
-      user.avatarUrl=avatarUrl;
+      user.githubId = id;
+      user.avatarUrl = avatarUrl;
       user.save();
       return cb(null, user);
     }
@@ -81,8 +81,8 @@ export const googleLoginCallback = async (_, __, profile, cb) => {
   try {
     const user = await User.findOne({ email });
     if (user) {
-      user.googleId=id;
-      user.avatarUrl=avatarUrl;
+      user.googleId = id;
+      user.avatarUrl = avatarUrl;
       user.save();
       return cb(null, user);
     }
@@ -127,6 +127,21 @@ export const userDetail = async (req, res) => {
   }
 };
 
-export const getEditProfile = (req, res) => res.render("editProfile", { pageTitle: "Edit Profile" });
+export const getEditProfile = (req, res) => {};
+export const postEditProfile = async (req, res) => {
+  const {
+    body: { name, email },
+    file,
+  } = req;
+  try {
+    await User.findByIdAndUpdate(req.user.id, {
+      name,
+      email,
+      avatar_url: file ? file.path : req.user.avatarUrl,
+    });
+  } catch (error) {
+    res.render("editProfile", { pageTitle: "Edit Profile" });
+  }
+};
 export const changePassword = (req, res) =>
   res.render("changePassword", { pageTitle: "Change Password" });
