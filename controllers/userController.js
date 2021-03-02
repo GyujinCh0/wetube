@@ -43,7 +43,6 @@ export const githubLoginCallback = async (_, __, profile, cb) => {
   const {
     _json: { id, name, avatar_url: avatarUrl, email },
   } = profile;
-  console.log(profile);
   try {
     const user = await User.findOne({ email });
     if (user) {
@@ -114,7 +113,6 @@ export const logout = (req, res) => {
 export const getMe = (req, res) => {
   res.render("userDetail", { pageTitle: "User Detail", user: req.user });
 };
-
 export const userDetail = async (req, res) => {
   const {
     params: { id },
@@ -126,8 +124,9 @@ export const userDetail = async (req, res) => {
     res.redirect(routes.home);
   }
 };
-
-export const getEditProfile = (req, res) => {};
+export const getEditProfile = (req, res) => {
+  res.render("editProfile", { pageTitle: "Edit Profile" });
+};
 export const postEditProfile = async (req, res) => {
   const {
     body: { name, email },
@@ -137,11 +136,36 @@ export const postEditProfile = async (req, res) => {
     await User.findByIdAndUpdate(req.user.id, {
       name,
       email,
-      avatar_url: file ? file.path : req.user.avatarUrl,
+      avatarUrl: file ? file.path : req.user.avatarUrl,
     });
+    res.redirect(routes.me);
   } catch (error) {
-    res.render("editProfile", { pageTitle: "Edit Profile" });
+    res.redirect(routes.editProfile);
   }
 };
-export const changePassword = (req, res) =>
+
+export const getChangePassword = (req, res) =>{
   res.render("changePassword", { pageTitle: "Change Password" });
+};
+export const postChangePassword = async (req, res) => {
+  const {
+    body: { oldPassword, newPassword, newPassword1 }
+  } = req;
+  try {
+    if (newPassword !== newPassword1) {
+      res.status(400);
+      res.redirect(`/users${routes.changePassword}`);
+      console.log("111");
+      return;
+    }
+    console.log(oldPassword);
+    console.log(newPassword);
+    
+    await req.user.changePassword(oldPassword, newPassword);
+    res.redirect(routes.me);
+  } catch (error) {
+    res.status(400);
+    res.redirect(`/users${routes.changePassword}`);
+    console.log(error);
+  }
+};

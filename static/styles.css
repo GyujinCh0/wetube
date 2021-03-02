@@ -136,6 +136,11 @@ input {
   input:focus, input:active {
     outline: none; }
 
+.user-avatar {
+  height: 80px;
+  background-color: #ea232c;
+  border-radius: 50%; }
+
 html,
 body {
   height: 100%; }
@@ -148,7 +153,7 @@ body {
 
 main {
   width: 100%;
-  max-width: 1400px;
+  max-width: 1200px;
   margin: 0 auto;
   min-height: 70vh; }
 
@@ -180,13 +185,15 @@ textarea,
     color: rgba(0, 0, 0, 0.7); }
 
 button {
+  border: none;
   background-color: #3498db;
   color: white; }
 
 button.delete {
   background-color: #bb2f2a; }
 
-a {
+button,
+input[type="submit"] {
   cursor: pointer; }
 
 .header {
@@ -347,8 +354,25 @@ a {
     .video-detail_-container .video__comments .video__comments-number {
       font-size: 16px; }
 
-.user-profile .user-profile__header img {
-  max-width: 160px; }
+.user-profile {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  flex-direction: column; }
+  .user-profile .user-profile__header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 18px; }
+    .user-profile .user-profile__header .profile__username {
+      font-size: 18px;
+      margin-top: 15px; }
+  .user-profile .user-profile__btns {
+    display: flex;
+    flex-direction: column;
+    align-items: center; }
+    .user-profile .user-profile__btns a:not(:last-child) {
+      margin-bottom: 20px; }
 
 .videoBlock video {
   max-width: 100%; }

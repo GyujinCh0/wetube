@@ -11,7 +11,7 @@ body {
 }
 main {
   width: 100%;
-  max-width: 1400px;
+  max-width: 1200px;
   margin: 0 auto;
   min-height: 70vh;
 }
@@ -35,12 +35,14 @@ textarea,
   }
 }
 button {
+  border: none;
   background-color: #3498db;
   color: white;
 }
 button.delete {
   background-color: $dark-red;
 }
-a {
+button,
+input[type="submit"] {
   cursor: pointer;
 }
