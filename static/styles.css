@@ -326,32 +326,33 @@ input[type="submit"] {
   .home-videos .videoBlock:nth-child(5) {
     grid-column: span 2; }
 
-.video-detail_-container {
+.video-detail__container {
   display: flex;
   flex-direction: column;
   align-items: center; }
-  .video-detail_-container .video_info {
+  .video-detail__container .video__info {
+    align-items: left;
     width: 100%;
     max-width: 850px;
     margin-top: 25px; }
-    .video-detail_-container .video_info button {
+    .video-detail__container .video__info button {
       width: 100px;
       margin-bottom: 25px; }
-  .video-detail_-container .video__title,
-  .video-detail_-container .video__views,
-  .video-detail_-container .video__description {
+  .video-detail__container .video__title,
+  .video-detail__container .video__views,
+  .video-detail__container .video__description {
     display: block;
     margin-bottom: 15px; }
-  .video-detail_-container .vidoe_-title {
+  .video-detail__container .vidoe__title {
     font-size: 22px;
     font-weight: 300; }
-  .video-detail_-container .video__views {
+  .video-detail__container .video__views {
     font-size: 14px; }
-  .video-detail_-container .video__description {
+  .video-detail__container .video__description {
     font-size: 18px; }
-  .video-detail_-container .video__comments {
+  .video-detail__container .video__comments {
     margin-top: 25px; }
-    .video-detail_-container .video__comments .video__comments-number {
+    .video-detail__container .video__comments .video__comments-number {
       font-size: 16px; }
 
 .user-profile {
