@@ -97,32 +97,53 @@
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _scss_styles_scss__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../scss/styles.scss */ "./assets/scss/styles.scss");
 /* harmony import */ var _scss_styles_scss__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_scss_styles_scss__WEBPACK_IMPORTED_MODULE_0__);
-function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
-
-function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
-
+/* harmony import */ var _videoPlayer__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./videoPlayer */ "./assets/js/videoPlayer.js");
+/* harmony import */ var _videoPlayer__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_videoPlayer__WEBPACK_IMPORTED_MODULE_1__);
 
 
-var something = /*#__PURE__*/function () {
-  var _ref = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee() {
-    return regeneratorRuntime.wrap(function _callee$(_context) {
-      while (1) {
-        switch (_context.prev = _context.next) {
-          case 0:
-            console.log("sometihing");
 
-          case 1:
-          case "end":
-            return _context.stop();
-        }
-      }
-    }, _callee);
-  }));
+/***/ }),
 
-  return function something() {
-    return _ref.apply(this, arguments);
-  };
-}();
+/***/ "./assets/js/videoPlayer.js":
+/*!**********************************!*\
+  !*** ./assets/js/videoPlayer.js ***!
+  \**********************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+var videoContainer = document.getElementById("jsVideoPlayer");
+var videoPlayer = document.querySelector("#jsVideoPlayer video");
+var playButton = document.getElementById("jsPlayButton");
+var volumeButton = document.getElementById("jsVolumeButton");
+
+function handlePlayClick() {
+  if (videoPlayer.paused) {
+    videoPlayer.play();
+    playButton.innerHTML = '<i class="fas fa-pause"></i>';
+  } else {
+    videoPlayer.pause();
+    playButton.innerHTML = '<i class="fas fa-play"></i>';
+  }
+}
+
+function handleVolumeClick() {
+  if (videoPlayer.muted) {
+    videoPlayer.muted = false;
+    volumeButton.innerHTML = '<i class="fas fa-volume-up"></i>';
+  } else {
+    videoPlayer.muted = true;
+    volumeButton.innerHTML = '<i class="fas fa-volume-mute"></i>';
+  }
+}
+
+function init() {
+  playButton.addEventListener("click", handlePlayClick);
+  volumeButton.addEventListener("click", handleVolumeClick);
+}
+
+if (videoContainer) {
+  init();
+}
 
 /***/ }),
 
