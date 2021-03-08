@@ -116,6 +116,8 @@ var videoPlayer = document.querySelector("#jsVideoPlayer video");
 var playButton = document.getElementById("jsPlayButton");
 var volumeButton = document.getElementById("jsVolumeButton");
 var fullScreenButton = document.getElementById("jsFullScreenButton");
+var currentTime = document.getElementById("currentTime");
+var totalTime = document.getElementById("totalTime");
 
 function handlePlayClick() {
   if (videoPlayer.paused) {
@@ -140,20 +142,70 @@ function handleVolumeClick() {
 function exitFullScreen() {
   fullScreenButton.innerHTML = '<i class="fas fa-expand"></i>';
   fullScreenButton.addEventListener("click", goFullScreen);
-  document.webkitExitFullscreen();
+
+  if (document.exitFullScreen) {
+    document.exitFullScreen();
+  } else if (document.mozExitFullScreen) {
+    document.cancelFullScreen();
+  } else if (document.webkitExitFullScreen) {
+    document.webkitExitFullScreen();
+  } else if (document.msExitFullScreen) {
+    document.msExitFullScreen();
+  }
 }
 
 function goFullScreen() {
-  videoContainer.webkitRequestFullscreen();
+  if (videoContainer.requestFullscreen) {
+    videoContainer.requestFullscreen();
+  } else if (videoContainer.mozRequestFullscreen) {
+    videoContainer.mozRequestFullscreen();
+  } else if (videoContainer.webkitRequestFullscreen) {
+    videoContainer.webkitRequestFullscreen();
+  } else if (videoContainer.msRequestFullscreen) {
+    videoContainer.msRequestFullscreen();
+  }
+
   fullScreenButton.innerHTML = '<i class="fas fa-compress"></i>';
   fullScreenButton.removeEventListener("click", goFullScreen);
   fullScreenButton.addEventListener("click", exitFullScreen);
+}
+
+var formatDate = function formatDate(seconds) {
+  var secondsNumber = parseInt(seconds, 10);
+  var hours = Math.floor(secondsNumber / 3600);
+  var minutes = Math.floor((secondsNumber - hours * 3600) / 60);
+  var totalSeconds = secondsNumber - hours * 3600 - minutes * 60;
+
+  if (hours < 10) {
+    hours = "0".concat(hours);
+  }
+
+  if (minutes < 10) {
+    minutes = "0".concat(minutes);
+  }
+
+  if (totalSeconds < 10) {
+    totalSeconds = "0".concat(totalSeconds);
+  }
+
+  return "".concat(hours, ":").concat(minutes, ":").concat(totalSeconds);
+};
+
+function setTotalTime() {
+  var totalTimeString = formatDate(videoPlayer.duration);
+  totalTime.innerHTML = totalTimeString;
+  setInterval(getCurrentTime, 1000);
+}
+
+function getCurrentTime() {
+  currentTime.innerHTML = formatDate(videoPlayer.currentTime);
 }
 
 function init() {
   playButton.addEventListener("click", handlePlayClick);
   volumeButton.addEventListener("click", handleVolumeClick);
   fullScreenButton.addEventListener("click", goFullScreen);
+  videoPlayer.addEventListener("loadedmetadata", setTotalTime);
 }
 
 if (videoContainer) {
