@@ -11,10 +11,10 @@ import {
   githubLogin,
   postGithubLogin,
   githubAuthenticate,
-  getMe,
   googleLogin,
   googleAuthenticate,
-  postGoogleLogin
+  postGoogleLogin,
+  getMe
 } from "../controllers/userController";
 import {onlyPublic, onlyPrivate} from "../middlewares";
 
@@ -35,7 +35,7 @@ globalRouter.get(routes.githubCallback, githubAuthenticate, postGithubLogin);
 
 globalRouter.get(routes.google, googleLogin);
 globalRouter.get(routes.googleCallback,googleAuthenticate, postGoogleLogin);
-
 globalRouter.get(routes.me,getMe);
+
 
 export default globalRouter;
