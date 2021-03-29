@@ -17,12 +17,11 @@ function handlePlayClick() {
   }
 }
 function handleVolumeClick() {
-
   if (videoPlayer.muted) {
     videoPlayer.muted = false;
     volumeButton.innerHTML = '<i class="fas fa-volume-up"></i>';
     volumeRange.value = videoPlayer.volume;
-  } else if(volumeRange.value!=0){
+  } else if (volumeRange.value != 0) {
     volumeRange.value = 0;
     videoPlayer.muted = true;
     volumeButton.innerHTML = '<i class="fas fa-volume-mute"></i>';
