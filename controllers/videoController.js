@@ -108,12 +108,11 @@ export const postRegisterView = async (req, res) => {
   } = req;
   try {
     const video = await Video.findById(id);
-    video.views += video.views;
+    video.views += 1;
     video.save();
     res.status(200);
   } catch (error) {
     res.status(400);
-    res.end();
   } finally {
     res.end();
   }

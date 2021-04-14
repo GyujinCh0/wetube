@@ -122,7 +122,11 @@ table {
   border-collapse: collapse;
   border-spacing: 0; }
 
-a {
+a,
+a:active,
+a:hover,
+a:link,
+a:visited {
   all: unset;
   cursor: pointer; }
 
@@ -196,9 +200,14 @@ button,
 input[type="submit"] {
   cursor: pointer; }
 
+a {
+  color: #444444; }
+
 .header {
   background-color: #ea232c;
   margin-bottom: 50px; }
+  .header a {
+    color: white; }
   .header .header__wrapper {
     padding: 5px 0px;
     width: 100%;
@@ -296,6 +305,8 @@ input[type="submit"] {
   flex-direction: column;
   align-items: center;
   width: 100%; }
+  .social-login a {
+    color: white; }
   .social-login button {
     width: 100%;
     max-width: 320px;
@@ -311,7 +322,7 @@ input[type="submit"] {
     background-color: #444444;
     color: white; }
   .social-login .social-login--google {
-    background-color: #3a5998;
+    background-color: #DD4B39;
     color: white; }
 
 .record-container {

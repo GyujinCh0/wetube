@@ -6,13 +6,14 @@ import bodyParser from "body-parser";
 import passport from "passport";
 import session from "express-session";
 import MongoStore from "connect-mongo";
+import routes from "./routes";
 import { localsMiddleware } from "./middlewares";
 import userRouter from "./routers/userRouter";
 import videoRouter from "./routers/videoRouter";
 import globalRouter from "./routers/globalRouter";
 import apiRouter from "./routers/apiRouter";
-import routes from "./routes";
-import routes from "./routes";
+
+
 
 import "./passport";
 const app = express();

@@ -1,12 +1,12 @@
 import express from "express";
 import routes from "../routes";
 import {
- registerView
+ postRegisterView
 } from "../controllers/videoController";
 
 
 const apiRouter = express.Router();
 
-apiRouter.get(routes.registerView, registerView);
+apiRouter.post(routes.registerView, postRegisterView);
 
 export default apiRouter;
